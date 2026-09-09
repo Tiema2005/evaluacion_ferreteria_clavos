@@ -6,38 +6,38 @@
     <title>Ferretería Los Maestros | Detalle del Producto</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js"></script>
 </head>
 <body>
-
+    
     <div id="header-container"></div>
 
     <main>
-        <section class="form-container">
-            <div>
-                <div>
-                    <img src="https://via.placeholder.com/400x300?text=Taladro+Percutor" alt="Producto" >
-                </div>
+        <section class="form-container product-detail-container">
+            <div class="product-detail-layout">
                 
+                <div class="product-detail-col">
+                    <img src="https://via.placeholder.com/400x300?text=Taladro+Percutor" alt="Producto" class="product-detail-img">
+                </div>
 
-                <div >
-                    <p>Inicio > Herramientas Eléctricas > Taladro</p>
-                    <h1>Taladro Percutor 13mm</h1>
-                    <p>$ 45.990</p>
-                    
-                    <p>Herramienta de alta potencia ideal para contratistas y trabajos exigentes en concreto y madera. Cuenta con velocidad variable y empuñadura ergonómica.</p>
-                    
-                    <div>
-                        <label>Cantidad:</label>
-                        <input type="number" class="form-control" value="1" min="1">
+                <div class="product-detail-col">
+                    <p class="product-breadcrumb">Inicio > Herramientas Eléctricas > Taladro</p>
+                    <h1 class="product-detail-title">Taladro Percutor 13mm</h1>
+                    <p class="product-detail-price">$ 45.990</p>
+
+                    <p class="product-detail-desc">Herramienta de alta potencia ideal para contratistas y trabajos exigentes en concreto y madera. Cuenta con velocidad variable y empuñadura ergonómica.</p>
+
+                    <div class="product-qty-wrapper">
+                        <label class="product-qty-label">Cantidad:</label>
+                        <input type="number" class="form-control product-qty-input" value="1" min="1">
                     </div>
 
-                    <button class="btn-accent" onclick="alert('Producto añadido al carrito correctamente');">Añadir al Carrito</button>
+                    <button class="btn-accent btn-add-cart" onclick="alert('Producto añadido al carrito correctamente');">Añadir al Carrito</button>
                 </div>
             </div>
         </section>
     </main>
 
     <div id="footer-container"></div>
+    <script src="js/app.js"></script>
 </body>
 </html>

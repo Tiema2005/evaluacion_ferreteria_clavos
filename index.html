@@ -1,45 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FerreMaster | Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/app.js"></script>
 </head>
 <body>
+    
     <div id="header-container"></div>
 
     <main>
         <section class="seccion-home">
             <h1>Todo para tu construcción en un solo lugar</h1>
             <p>Conectamos a maestros contratistas y clientes con un stock garantizado y despacho rápido en todo Chile.</p>
-            <div>
-                <a href="productos.html" class="btn-accent" >Ver Catálogo Completo</a>
+            <div class="hero-actions">
+                <a href="productos.html" class="btn-accent btn-hero">Ver Catálogo Completo</a>
             </div>
         </section>
 
-        <section class="seccion-home">
-            <h2>Catálogo Destacado</h2>
-            <p>Descubre los productos más llevados por los expertos.</p>
+        <section class="seccion-home home-catalog-section">
+            <h2 class="section-title-center">Catálogo Destacado</h2>
+            <p class="section-subtitle-center">Descubre los productos más llevados por los expertos.</p>
             
-            <div class="grid-3-col" id="catalogo-destacado">
+            <div class="catalog-grid-4" id="catalogo-destacado">
             </div>
 
-            <div">
-                <a href="productos.html" class="btn-primary">Ver todos los productos →</a>
+            <div class="catalog-actions">
+                <a href="productos.html" class="btn-primary inline-block">Ver todos los productos →</a>
             </div>
         </section>
 
         <section class="seccion-home">
             <h2>Ferreterías Asociadas</h2>
             <p>Unimos las ferreterías de todo Chile para asegurarte la mejor experiencia de compra.</p>
-            
+
             <div class="grid-3-col">
                 <div class="card card-tienda">
-                    <h3>🛒 Sucursal Buin</h3>
-                    <p>📍 Longitudinal - Ruta 5 526, Buin</p>
+                    <h3>📍 Sucursal Buin</h3>
+                    <p>🛣 Longitudinal - Ruta 5 526, Buin</p>
                     <p>📞 (2) 3221 0230</p>
                     <p>🌎 Región Metropolitana</p>
                     <span class="badge">Construcción</span>
@@ -47,8 +47,8 @@
                 </div>
 
                 <div class="card card-tienda">
-                    <h3>🛒 Sucursal Macul</h3>
-                    <p>📍 Av. Macul 3000, Macul</p>
+                    <h3>📍 Sucursal Macul</h3>
+                    <p>🛣 Av. Macul 3000, Macul</p>
                     <p>📞 (2) 2379 2067</p>
                     <p>🌎 Región Metropolitana</p>
                     <span class="badge">Construcción</span>
@@ -56,8 +56,8 @@
                 </div>
 
                 <div class="card card-tienda">
-                    <h3>🛒 Sucursal San Fernando</h3>
-                    <p>📍 Chillán 50, San Fernando</p>
+                    <h3>📍 Sucursal San Fernando</h3>
+                    <p>🛣 Chillán 50, San Fernando</p>
                     <p>📞 +56 9 6848 9406</p>
                     <p>🌎 Región de O'Higgins</p>
                     <span class="badge">Herramientas</span>
@@ -71,6 +71,7 @@
             <p>Mantente informado sobre las últimas novedades del sector ferretero.</p>
             
             <div class="grid-3-col">
+                <!-- Noticia 1 -->
                 <article class="card card-noticia">
                     <div class="card-noticia-body">
                         <h3>¡Así vivimos la Expo Ferretera 2026!</h3>
@@ -79,6 +80,7 @@
                     </div>
                 </article>
 
+                <!-- Noticia 2 -->
                 <article class="card card-noticia">
                     <div class="card-noticia-body">
                         <h3>Evento Innovamat 2026</h3>
@@ -87,6 +89,7 @@
                     </div>
                 </article>
 
+                <!-- Noticia 3 -->
                 <article class="card card-noticia">
                     <div class="card-noticia-body">
                         <h3>Consejos para elegir tu taladro</h3>
@@ -97,8 +100,9 @@
             </div>
         </section>
     </main>
+    </main>
 
     <div id="footer-container"></div>
-
+    <script src="js/app.js"></script>
 </body>
 </html>

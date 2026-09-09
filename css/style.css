@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #006039; 
+    --primary-color: #006039;
     --accent-color: #e65100;
     --bg-light: #f8f9fa; 
     --text-color: #333333;
@@ -102,3 +102,66 @@ ul { list-style: none; }
 .admin-table th { background-color: #f1f3f5; font-weight: 600; color: var(--primary-color); }
 .btn-edit { color: var(--accent-color); border: none; background: none; cursor: pointer; font-weight: bold; font-size: 1rem; }
 .btn-edit:hover { text-decoration: underline; }
+
+.hero-actions { margin-top: 20px; }
+.btn-hero { padding: 12px 25px; text-decoration: none; display: inline-block; }
+.home-catalog-section { background-color: #f8fafc; padding: 40px 20px; }
+.section-title-center { text-align: center; color: var(--primary-color); }
+.section-subtitle-center { text-align: center; color: gray; margin-bottom: 30px; }
+.catalog-grid-4 { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.catalog-actions { text-align: center; margin-top: 30px; }
+.inline-block { display: inline-block; }
+
+.login-container { max-width: 450px; margin-top: 60px; }
+.register-container { max-width: 700px; margin-top: 40px; }
+.auth-header { text-align: center; margin-bottom: 25px; }
+.auth-title { color: var(--primary-color); }
+.auth-subtitle { color: gray; font-size: 0.9rem; }
+.auth-btn { margin-top: 10px; }
+.auth-btn-reg { margin-top: 20px; }
+.form-footer-link { text-align: center; margin-top: 20px; }
+.link-primary { color: var(--primary-color); font-weight: bold; }
+
+.about-container { max-width: 800px; margin-top: 50px; }
+.about-title { color: var(--primary-color); margin-bottom: 20px; text-align: center; }
+.about-text { margin-bottom: 15px; }
+.about-subtitle { color: var(--primary-color); margin-top: 25px; margin-bottom: 10px; }
+.about-list { padding-left: 20px; line-height: 1.8; }
+
+.contact-header { text-align: center; margin-top: 40px; }
+.contact-title { color: var(--primary-color); }
+.contact-subtitle { color: gray; }
+.contact-layout-wrapper { display: flex; gap: 30px; max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+.contact-info-card { flex: 1; height: fit-content; }
+.contact-form-card { flex: 2; }
+.contact-card-title { margin-bottom: 20px; color: var(--primary-color); }
+.contact-info-item { margin-bottom: 20px; }
+.contact-info-text { color: gray; font-size: 0.9rem; }
+
+.product-detail-container { max-width: 900px; margin-top: 50px; }
+.product-detail-layout { display: flex; gap: 40px; flex-wrap: wrap; }
+.product-detail-col { flex: 1; min-width: 300px; text-align: left; }
+.product-detail-img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+.product-breadcrumb { color: gray; font-size: 0.85rem; margin-bottom: 5px; }
+.product-detail-title { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
+.product-detail-price { color: var(--accent-color); font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
+.product-detail-desc { color: gray; font-size: 0.95rem; margin-bottom: 20px; }
+.product-qty-wrapper { margin-bottom: 20px; }
+.product-qty-label { font-weight: 600; display: block; margin-bottom: 5px; }
+.product-qty-input { width: 80px; }
+.btn-add-cart { width: 100%; padding: 12px; }
+
+.products-filter-bar { display: flex; gap: 15px; max-width: 700px; margin: 0 auto 30px auto; flex-wrap: wrap; }
+.filter-search { flex: 2; min-width: 250px; }
+.filter-select { flex: 1; min-width: 180px; }
+
+.cart-container { max-width: 800px; margin-top: 50px; }
+.cart-title { color: var(--primary-color); text-align: center; margin-bottom: 20px; }
+.cart-actions { display: flex; justify-content: space-between; margin-top: 30px; }
+
+.blog-detail-container { max-width: 800px; margin-top: 40px; text-align: left; }
+.blog-title { color: var(--primary-color); margin-bottom: 10px; }
+.blog-date { color: gray; font-size: 0.85rem; margin-bottom: 20px; }
+.blog-text { margin-bottom: 15px; }
+.blog-subtitle { color: var(--primary-color); margin-top: 20px; margin-bottom: 10px; }
+.blog-list { padding-left: 20px; line-height: 1.8; margin-bottom: 30px; }

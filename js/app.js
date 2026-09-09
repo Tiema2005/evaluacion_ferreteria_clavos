@@ -1,35 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const headerContainer = document.getElementById("header-container");
-    if (headerContainer) {
-        fetch("components/header.html")
-            .then(res => res.text())
-            .then(data => {
-                headerContainer.innerHTML = data;
-            })
-            .catch(err => console.error("Error cargando el header:", err));
-    }
-
-    const footerContainer = document.getElementById("footer-container");
-    if (footerContainer) {
-        fetch("components/footer.html")
-            .then(res => res.text())
-            .then(data => {
-                footerContainer.innerHTML = data;
-            })
-            .catch(err => console.error("Error cargando el footer:", err));
-    }
-});
-
 async function cargarComponentes() {
     const headerContainer = document.getElementById('header-container');
     const footerContainer = document.getElementById('footer-container');
 
     if (headerContainer) {
         try {
-            const respHeader = await fetch('header.html'); 
+            const respHeader = await fetch('components/header.html'); 
             if (respHeader.ok) {
                 headerContainer.innerHTML = await respHeader.text();
-                actualizarContadorCarrito(); 
+                actualizarContadorCarrito();
+            } else {
+                console.error("No se encontró el archivo del header.");
             }
         } catch (error) {
             console.error("Error cargando el header:", error);
@@ -38,9 +18,11 @@ async function cargarComponentes() {
 
     if (footerContainer) {
         try {
-            const respFooter = await fetch('footer.html');
+            const respFooter = await fetch('components/footer.html'); 
             if (respFooter.ok) {
                 footerContainer.innerHTML = await respFooter.text();
+            } else {
+                console.error("No se encontró el archivo del footer.");
             }
         } catch (error) {
             console.error("Error cargando el footer:", error);
@@ -80,22 +62,23 @@ function renderizarCatalogo(productosAMostrar = listaDeProductos) {
     contenedor.innerHTML = "";
     
     if (productosAMostrar.length === 0) {
-        contenedor.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: gray;'>No se encontraron productos.</p>";
+        contenedor.innerHTML = "<p class='no-products-msg'>No se encontraron productos.</p>";
         return;
     }
 
     productosAMostrar.forEach(prod => {
+        const claseStock = prod.stock <= prod.stockMinimo ? 'text-danger' : 'text-success';
         contenedor.innerHTML += `
-            <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                    <span style="font-size: 0.7rem; background: #e2e8f0; padding: 2px 8px; border-radius: 10px; font-weight: 600;">${prod.categoria}</span>
-                    <h3 style="font-size: 1rem; margin-top: 10px; margin-bottom: 5px;">${prod.nombre}</h3>
-                    <p style="font-size: 0.8rem; color: gray;">Marca: <strong>${prod.marca}</strong> | Unid: ${prod.unidad}</p>
-                    <p style="font-size: 0.8rem; color: ${prod.stock <= prod.stockMinimo ? '#d32f2f' : '#2e7d32'}; margin-top: 5px;">Stock: <strong>${prod.stock} ${prod.unidad}</strong></p>
+            <article class="card product-card">
+                <div class="product-card-body">
+                    <span class="badge-category">${prod.categoria}</span>
+                    <h3 class="product-name">${prod.nombre}</h3>
+                    <p class="product-info">Marca: <strong>${prod.marca}</strong> | Unid: ${prod.unidad}</p>
+                    <p class="product-stock ${claseStock}">Stock: <strong>${prod.stock} ${prod.unidad}</strong></p>
                 </div>
-                <div style="margin-top: 15px;">
-                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--accent-color); margin-bottom: 10px;">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
-                    <button class="btn-accent" style="width:100%; padding: 8px;" onclick="agregarAlCarrito('${prod.id}')">Añadir al carrito</button>
+                <div class="product-card-footer">
+                    <p class="product-price">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
+                    <button class="btn-accent btn-full" onclick="agregarAlCarrito('${prod.id}')">Añadir al carrito</button>
                 </div>
             </article>
         `;
@@ -110,17 +93,18 @@ function renderizarDestacadosIndex() {
     const destacados = listaDeProductos.slice(0, 4);
 
     destacados.forEach(prod => {
+        const claseStock = prod.stock <= prod.stockMinimo ? 'text-danger' : 'text-success';
         contenedor.innerHTML += `
-            <article class="card" style="display: flex; flex-direction: column; justify-content: space-between; background: white;">
-                <div>
-                    <span style="font-size: 0.7rem; background: #e2e8f0; padding: 2px 8px; border-radius: 10px; font-weight: 600;">${prod.categoria}</span>
-                    <h3 style="font-size: 1rem; margin-top: 10px; margin-bottom: 5px;">${prod.nombre}</h3>
-                    <p style="font-size: 0.8rem; color: gray;">Marca: <strong>${prod.marca}</strong> | Unid: ${prod.unidad}</p>
-                    <p style="font-size: 0.8rem; color: ${prod.stock <= prod.stockMinimo ? '#d32f2f' : '#2e7d32'}; margin-top: 5px;">Stock: <strong>${prod.stock} ${prod.unidad}</strong></p>
+            <article class="card product-card">
+                <div class="product-card-body">
+                    <span class="badge-category">${prod.categoria}</span>
+                    <h3 class="product-name">${prod.nombre}</h3>
+                    <p class="product-info">Marca: <strong>${prod.marca}</strong> | Unid: ${prod.unidad}</p>
+                    <p class="product-stock ${claseStock}">Stock: <strong>${prod.stock} ${prod.unidad}</strong></p>
                 </div>
-                <div style="margin-top: 15px;">
-                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--accent-color); margin-bottom: 10px;">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
-                    <button class="btn-accent" style="width:100%; padding: 8px;" onclick="agregarAlCarrito('${prod.id}')">Añadir al carrito</button>
+                <div class="product-card-footer">
+                    <p class="product-price">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
+                    <button class="btn-accent btn-full" onclick="agregarAlCarrito('${prod.id}')">Añadir al carrito</button>
                 </div>
             </article>
         `;
@@ -172,7 +156,7 @@ function renderizarCarrito() {
     if (!contenedor) return;
     
     if (carrito.length === 0) {
-        contenedor.innerHTML = "<p style='text-align:center; color:gray;'>Tu carrito está vacío.</p>";
+        contenedor.innerHTML = "<p class='cart-empty-msg'>Tu carrito está vacío.</p>";
         return;
     }
 
@@ -182,18 +166,18 @@ function renderizarCarrito() {
     carrito.forEach((prod, index) => {
         total += prod.pVenta;
         contenedor.innerHTML += `
-            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ddd; align-items: center;">
-                <div>
+            <div class="cart-item-row">
+                <div class="cart-item-info">
                     <strong>${prod.nombre}</strong>
-                    <p style="font-size: 0.8rem; color: gray;">${prod.unidad}</p>
+                    <p class="cart-item-unit">${prod.unidad}</p>
                 </div>
-                <p style="font-weight: bold;">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
-                <button onclick="eliminarDelCarrito(${index})" style="color: red; border: none; background: none; cursor:pointer; font-size: 1.1rem;" title="Eliminar">❌</button>
+                <p class="cart-item-price">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
+                <button onclick="eliminarDelCarrito(${index})" class="btn-delete-cart" title="Eliminar">❌</button>
             </div>
         `;
     });
     
-    contenedor.innerHTML += `<h3 style="text-align: right; margin-top: 20px; color: var(--primary-color);">Total: $ ${total.toLocaleString('es-CL')}</h3>`;
+    contenedor.innerHTML += `<h3 class="cart-total-price">Total: $ ${total.toLocaleString('es-CL')}</h3>`;
 }
 
 window.eliminarDelCarrito = function(index) {
@@ -222,6 +206,13 @@ function esRunValido(run) {
     return regexRun.test(run) && run.length >= 7 && run.length <= 9;
 }
 
+function ocultarMensajesErrorIniciales() {
+    const errores = document.querySelectorAll('[id^="error-"]');
+    errores.forEach(el => {
+        el.style.display = 'none';
+    });
+}
+
 function manejarError(inputId, esInvalido) {
     const input = document.getElementById(inputId);
     const mensajeError = document.getElementById(`error-${inputId}`);
@@ -230,22 +221,31 @@ function manejarError(inputId, esInvalido) {
     if (esInvalido) {
         input.classList.add('is-invalid');
         input.classList.remove('is-valid');
+        input.style.borderColor = '#d32f2f';
+        
         mensajeError.style.display = 'block';
+        mensajeError.style.color = '#d32f2f';
+        mensajeError.style.fontSize = '0.85rem';
+        mensajeError.style.marginTop = '5px';
     } else {
         input.classList.remove('is-invalid');
         input.classList.add('is-valid');
+        input.style.borderColor = '#2e7d32';
+        
         mensajeError.style.display = 'none';
     }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    
     await cargarComponentes(); 
+
+    ocultarMensajesErrorIniciales();
 
     renderizarCatalogo();
     renderizarDestacadosIndex();
     configurarFiltros();
     renderizarCarrito();
-    actualizarContadorCarrito();
 
     const selectRegion = document.getElementById('reg-region');
     const selectComuna = document.getElementById('reg-comuna');

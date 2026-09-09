@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Ferretería Los Maestros</title>
+    <title>Panel de Administración | Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="admin-layout">
+<body>
 
-    <aside class="admin-sidebar">
-        <h2>Panel de Control</h2>
-        <nav>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>FerreMaster Admin</h2>
             <ul>
-                <li><a href="admin-home.html">Inicio</a></li>
-                <li><a href="admin-usuarios.html">Gestión de Usuarios</a></li>
-                <li><a href="admin-productos.html">Gestión de Productos</a></li>
-                <li><a href="index.html">Cerrar Sesión (Tienda)</a></li>
+                <li><a href="admin-home.html" class="nav-active">📊 Dashboard</a></li>
+                <li><a href="admin-productos.html">📦 Productos</a></li>
+                <li><a href="index.html" class="nav-logout">🚪 Cerrar Sesión</a></li>
             </ul>
-        </nav>
-    </aside>
+        </aside>
 
-    <main class="admin-content">
-        <h1>¡Hola Administrador!</h1>
-        <p>Bienvenido al panel de gestión interna de Ferretería Los Maestros.</p>
-        
-        <div>
-            <div class="card">
-                <h3>Usuarios Registrados</h3>
-                <p>15</p>
-            </div>
-            <div class="card">
-                <h3>Productos en Inventario</h3>
-                <p >842</p>
-            </div>
-        </div>
-    </main>
+        <main class="admin-content">
+            <h1 class="page-title">Bienvenido al Panel de Control</h1>
+            <p class="page-subtitle">Resumen general del estado del inventario y la plataforma.</p>
 
+            <div class="dashboard-cards">
+                <div class="card card-metric">
+                    <p class="metric-title">Total de Productos</p>
+                    <p class="metric-value-primary" id="dash-total-productos">0</p>
+                </div>
+
+                <div class="card card-metric">
+                    <p class="metric-title">Productos Críticos (Bajo Stock)</p>
+                    <p class="metric-value-accent" id="dash-stock-critico">0</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
