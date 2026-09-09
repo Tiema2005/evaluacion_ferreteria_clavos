@@ -53,3 +53,52 @@ ul { list-style: none; }
 .btn-secondary { background-color: #6c757d; color: var(--white); padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 .btn-secondary:hover { background-color: #5a6268; }
 
+.seccion-home { max-width: 1280px; margin: 60px auto; padding: 0 20px; text-align: center; }
+.seccion-home h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 10px; }
+.seccion-home > p { color: gray; margin-bottom: 40px; }
+.grid-3-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.card { background-color: var(--white); border-radius: 10px; padding: 20px; box-shadow: var(--shadow); text-align: left; transition: transform 0.3s; border: 1px solid var(--border-color);}
+.card:hover { transform: translateY(-5px); }
+
+.product-card { display: flex; flex-direction: column; justify-content: space-between; }
+.product-badge { font-size: 0.7rem; background: #e2e8f0; padding: 4px 10px; border-radius: 10px; font-weight: 600; color: #555; display: inline-block; margin-bottom: 10px;}
+.product-title { font-size: 1.1rem; margin-bottom: 5px; color: #000; }
+.product-meta { font-size: 0.85rem; color: gray; margin-bottom: 5px; }
+.stock-ok { color: var(--success-color); font-size: 0.85rem; font-weight: bold; }
+.stock-low { color: var(--danger-color); font-size: 0.85rem; font-weight: bold; }
+.product-price-section { margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px; }
+.product-price { font-size: 1.3rem; font-weight: bold; color: var(--accent-color); margin-bottom: 15px; text-align: center; }
+
+.form-container, .card-form { max-width: 800px; margin: 0 auto; background-color: var(--white); padding: 30px; border-radius: 10px; box-shadow: var(--shadow); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+.form-group label { font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+.form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit;}
+.form-actions { display: flex; gap: 15px; margin-top: 20px; }
+
+.admin-layout { display: flex; min-height: 100vh; flex-direction: row; }
+.admin-sidebar { width: 260px; background-color: var(--primary-color); color: var(--white); padding: 30px 20px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); z-index: 10; }
+.admin-sidebar h2 { margin-bottom: 30px; font-size: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+.admin-sidebar ul li { margin-bottom: 10px; }
+.admin-sidebar a { display: block; padding: 12px 15px; border-radius: 5px; transition: background 0.2s; }
+.admin-sidebar a:hover { background-color: rgba(255, 255, 255, 0.1); }
+.nav-active { font-weight: bold; background-color: rgba(255, 255, 255, 0.2); }
+.nav-logout { margin-top: 40px; color: #ffcccc !important; border: 1px solid #ffcccc; text-align: center;}
+
+.admin-content { flex: 1; padding: 40px; background-color: var(--bg-light); overflow-y: auto; }
+.admin-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.page-title { color: var(--primary-color); margin-bottom: 5px;}
+.page-subtitle { color: gray; margin-bottom: 30px; }
+
+.dashboard-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card-metric { text-align: center; }
+.metric-title { color: gray; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+.metric-value-primary { font-size: 3rem; font-weight: bold; color: var(--primary-color); }
+.metric-value-accent { font-size: 3rem; font-weight: bold; color: var(--accent-color); }
+
+.admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+.admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+.admin-table th { background-color: #f1f3f5; font-weight: 600; color: var(--primary-color); }
+.btn-edit { color: var(--accent-color); border: none; background: none; cursor: pointer; font-weight: bold; font-size: 1rem; }
+.btn-edit:hover { text-decoration: underline; }
