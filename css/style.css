@@ -1,0 +1,55 @@
+:root {
+    --primary-color: #006039; 
+    --accent-color: #e65100;
+    --bg-light: #f8f9fa; 
+    --text-color: #333333;
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+main { flex: 1; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.top-bar { background-color: var(--primary-color); color: var(--white); font-size: 0.85rem; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; }
+.top-bar-left { display: flex; gap: 20px; }
+.btn-login-top { background-color: var(--accent-color); color: var(--white); padding: 5px 15px; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+.btn-login-top:hover { background-color: #cc4800; }
+
+.main-header { background-color: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; padding: 15px 20px; }
+.logo { font-size: 24px; font-weight: bold; color: var(--primary-color); }
+.nav-links { display: flex; gap: 20px; }
+.nav-links a:hover { color: var(--primary-color); font-weight: bold; }
+.nav-actions { display: flex; gap: 15px; align-items: center; }
+
+.main-footer { background-color: var(--primary-color); color: var(--white); padding: 40px 20px 20px 20px; text-align: center; margin-top: 50px; }
+.footer-container h2 { font-size: 1.8rem; margin-bottom: 10px; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 30px; padding-top: 20px; font-size: 0.85rem; }
+
+.btn-primary { background-color: var(--primary-color); color: var(--white); padding: 8px 16px; border-radius: 5px; transition: background 0.3s; border: none; cursor: pointer; font-weight: bold; }
+.btn-accent { background-color: var(--accent-color); color: var(--white); padding: 8px 16px; border-radius: 5px; font-weight: bold; border: none; cursor: pointer; }
+.product-card .btn-accent { width: 100%; }
+.btn-submit { background-color: var(--primary-color); color: var(--white); padding: 12px; border: none; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer; }
+.btn-secondary { background-color: #6c757d; color: var(--white); padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.btn-secondary:hover { background-color: #5a6268; }
+
