@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios | Admin Los Maestros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-layout">
+
+    <aside class="admin-sidebar">
+        <h2>Panel de Control</h2>
+        <nav>
+            <ul>
+                <li><a href="admin-home.html">Inicio</a></li>
+                <li><a href="admin-usuarios.html">Gestión de Usuarios</a></li>
+                <li><a href="admin-productos.html">Gestión de Productos</a></li>
+                <li><a href="index.html">Cerrar Sesión (Tienda)</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div>
+            <h1>Gestión de Usuarios</h1>
+            <a href="admin-usuario-nuevo.html" class="btn-primary">+ Nuevo Usuario</a>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>RUN</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>19011022K</td>
+                    <td>Juan Pérez</td>
+                    <td>juan@duoc.cl</td>
+                    <td>Cliente</td>
+                    <td><button>Editar</button></td>
+                </tr>
+                <tr>
+                    <td>151234567</td>
+                    <td>Ana Gómez</td>
+                    <td>ana@profesor.duoc.cl</td>
+                    <td>Vendedor</td>
+                    <td><button>Editar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>
