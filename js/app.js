@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Header
     const headerContainer = document.getElementById("header-container");
     if (headerContainer) {
         fetch("components/header.html")
@@ -10,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error("Error cargando el header:", err));
     }
 
-    // Footer
     const footerContainer = document.getElementById("footer-container");
     if (footerContainer) {
         fetch("components/footer.html")
@@ -26,23 +24,21 @@ async function cargarComponentes() {
     const headerContainer = document.getElementById('header-container');
     const footerContainer = document.getElementById('footer-container');
 
-    // Cargar Header
     if (headerContainer) {
         try {
-            const respHeader = await fetch('header.html'); // Asegúrate de tener este archivo
+            const respHeader = await fetch('header.html'); 
             if (respHeader.ok) {
                 headerContainer.innerHTML = await respHeader.text();
-                actualizarContadorCarrito(); // Actualizar contador una vez que el header exista
+                actualizarContadorCarrito(); 
             }
         } catch (error) {
             console.error("Error cargando el header:", error);
         }
     }
 
-    // Cargar Footer
     if (footerContainer) {
         try {
-            const respFooter = await fetch('footer.html'); // Asegúrate de tener este archivo
+            const respFooter = await fetch('footer.html');
             if (respFooter.ok) {
                 footerContainer.innerHTML = await respFooter.text();
             }
@@ -52,9 +48,6 @@ async function cargarComponentes() {
     }
 }
 
-// ==========================================
-// 2. CATÁLOGO REDUCIDO (20 Productos Clave)
-// ==========================================
 const listaDeProductos = [
     { id: "MC001", codigo: "MC001", categoria: "Mat. Construcción", nombre: "Cemento Polpaico gris 25 kg", marca: "Polpaico", unidad: "Saco", pVenta: 5990, stock: 80, stockMinimo: 20 },
     { id: "MC002", codigo: "MC002", categoria: "Mat. Construcción", nombre: "Cemento Melón blanco 25 kg", marca: "Melón", unidad: "Saco", pVenta: 7490, stock: 40, stockMinimo: 10 },
@@ -78,9 +71,6 @@ const listaDeProductos = [
     { id: "MD002", codigo: "MD002", categoria: "Madera", nombre: "Pino cepillado 2x4\" x 3m", marca: "Arauco", unidad: "Unidad", pVenta: 7490, stock: 30, stockMinimo: 8 }
 ];
 
-// ==========================================
-// 3. CARRITO Y LOCALSTORAGE
-// ==========================================
 let carrito = JSON.parse(localStorage.getItem('carritoFerret')) || [];
 
 function renderizarCatalogo(productosAMostrar = listaDeProductos) {
@@ -137,9 +127,6 @@ function renderizarDestacadosIndex() {
     });
 }
 
-// ==========================================
-// 4. FILTROS DE BÚSQUEDA Y CATEGORÍA
-// ==========================================
 function configurarFiltros() {
     const inputBuscar = document.getElementById('input-buscar');
     const selectCat = document.getElementById('select-categoria');
@@ -163,9 +150,6 @@ function configurarFiltros() {
     selectCat.addEventListener('change', aplicarFiltros);
 }
 
-// ==========================================
-// 5. FUNCIONES DE CARRITO
-// ==========================================
 window.agregarAlCarrito = function(id) {
     const producto = listaDeProductos.find(p => p.id === id);
     carrito.push(producto);
@@ -175,7 +159,6 @@ window.agregarAlCarrito = function(id) {
 }
 
 function actualizarContadorCarrito() {
-    // Busca botones que tengan la clase btn-primary y contengan la palabra "Cart"
     const cartBotones = document.querySelectorAll('.btn-primary');
     cartBotones.forEach(btn => {
         if (btn.innerHTML.includes('Cart') || btn.innerHTML.includes('🛒')) {
@@ -183,3 +166,185 @@ function actualizarContadorCarrito() {
         }
     });
 }
+
+function renderizarCarrito() {
+    const contenedor = document.getElementById('items-carrito');
+    if (!contenedor) return;
+    
+    if (carrito.length === 0) {
+        contenedor.innerHTML = "<p style='text-align:center; color:gray;'>Tu carrito está vacío.</p>";
+        return;
+    }
+
+    contenedor.innerHTML = "";
+    let total = 0;
+    
+    carrito.forEach((prod, index) => {
+        total += prod.pVenta;
+        contenedor.innerHTML += `
+            <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #ddd; align-items: center;">
+                <div>
+                    <strong>${prod.nombre}</strong>
+                    <p style="font-size: 0.8rem; color: gray;">${prod.unidad}</p>
+                </div>
+                <p style="font-weight: bold;">$ ${prod.pVenta.toLocaleString('es-CL')}</p>
+                <button onclick="eliminarDelCarrito(${index})" style="color: red; border: none; background: none; cursor:pointer; font-size: 1.1rem;" title="Eliminar">❌</button>
+            </div>
+        `;
+    });
+    
+    contenedor.innerHTML += `<h3 style="text-align: right; margin-top: 20px; color: var(--primary-color);">Total: $ ${total.toLocaleString('es-CL')}</h3>`;
+}
+
+window.eliminarDelCarrito = function(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem('carritoFerret', JSON.stringify(carrito));
+    renderizarCarrito();
+    actualizarContadorCarrito();
+}
+
+const datosRegiones = {
+    "Región de Coquimbo": ["La Serena", "Coquimbo", "Ovalle"],
+    "Región de Valparaíso": ["Valparaíso", "Viña del Mar", "Quilpué", "Villa Alemana"],
+    "Región Metropolitana": ["Santiago", "San Bernardo", "Puente Alto", "Maipú", "Providencia"]
+};
+
+function esCorreoValido(email) {
+    return email.endsWith('@duoc.cl') || email.endsWith('@profesor.duoc.cl') || email.endsWith('@gmail.com');
+}
+
+function esPasswordValido(password) {
+    return password.length >= 4 && password.length <= 10;
+}
+
+function esRunValido(run) {
+    const regexRun = /^[0-9]+[0-9kK]$/;
+    return regexRun.test(run) && run.length >= 7 && run.length <= 9;
+}
+
+function manejarError(inputId, esInvalido) {
+    const input = document.getElementById(inputId);
+    const mensajeError = document.getElementById(`error-${inputId}`);
+    if (!input || !mensajeError) return;
+    
+    if (esInvalido) {
+        input.classList.add('is-invalid');
+        input.classList.remove('is-valid');
+        mensajeError.style.display = 'block';
+    } else {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        mensajeError.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await cargarComponentes(); 
+
+    renderizarCatalogo();
+    renderizarDestacadosIndex();
+    configurarFiltros();
+    renderizarCarrito();
+    actualizarContadorCarrito();
+
+    const selectRegion = document.getElementById('reg-region');
+    const selectComuna = document.getElementById('reg-comuna');
+    if (selectRegion && selectComuna) {
+        for (let region in datosRegiones) {
+            let option = document.createElement('option');
+            option.value = region;
+            option.textContent = region;
+            selectRegion.appendChild(option);
+        }
+
+        selectRegion.addEventListener('change', function() {
+            const regionSeleccionada = this.value;
+            selectComuna.innerHTML = '<option value="">Seleccione una comuna...</option>';
+            if (regionSeleccionada) {
+                selectComuna.disabled = false;
+                datosRegiones[regionSeleccionada].forEach(comuna => {
+                    let option = document.createElement('option');
+                    option.value = comuna;
+                    option.textContent = comuna;
+                    selectComuna.appendChild(option);
+                });
+            } else {
+                selectComuna.disabled = true;
+            }
+        });
+    }
+
+    const formLogin = document.getElementById('form-login');
+    if (formLogin) {
+        formLogin.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let email = document.getElementById('login-email').value;
+            let pass = document.getElementById('login-pass').value;
+            let emailInvalido = !esCorreoValido(email);
+            let passInvalido = !esPasswordValido(pass);
+            
+            manejarError('login-email', emailInvalido);
+            manejarError('login-pass', passInvalido);
+            
+            if (!emailInvalido && !passInvalido) {
+                alert("¡Inicio de sesión exitoso!");
+                window.location.href = "index.html"; 
+            }
+        });
+    }
+
+    const formRegistro = document.getElementById('form-registro');
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let run = document.getElementById('reg-run').value;
+            let nombre = document.getElementById('reg-nombre').value;
+            let email = document.getElementById('reg-email').value;
+            let pass = document.getElementById('reg-pass').value;
+            let region = document.getElementById('reg-region').value;
+            let comuna = document.getElementById('reg-comuna').value;
+
+            let runInvalido = !esRunValido(run);
+            let nombreInvalido = nombre.trim() === "";
+            let emailInvalido = !esCorreoValido(email);
+            let passInvalido = !esPasswordValido(pass);
+            let regionInvalida = region === "";
+            let comunaInvalida = comuna === "";
+
+            manejarError('reg-run', runInvalido);
+            manejarError('reg-nombre', nombreInvalido);
+            manejarError('reg-email', emailInvalido);
+            manejarError('reg-pass', passInvalido);
+            manejarError('reg-region', regionInvalida);
+            manejarError('reg-comuna', comunaInvalida);
+
+            if (!runInvalido && !nombreInvalido && !emailInvalido && !passInvalido && !regionInvalida && !comunaInvalida) {
+                alert("¡Registro de usuario exitoso!");
+                window.location.href = "login.html";
+            }
+        });
+    }
+
+    const formContacto = document.getElementById('form-contacto');
+    if (formContacto) {
+        formContacto.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let nombre = document.getElementById('contact-nombre').value;
+            let email = document.getElementById('contact-email').value;
+            let mensaje = document.getElementById('contact-mensaje').value;
+
+            let nombreInvalido = nombre.trim() === "";
+            let emailInvalido = !esCorreoValido(email);
+            let mensajeInvalido = mensaje.trim() === "";
+
+            manejarError('contact-nombre', nombreInvalido);
+            manejarError('contact-email', emailInvalido);
+            manejarError('contact-mensaje', mensajeInvalido);
+
+            if (!nombreInvalido && !emailInvalido && !mensajeInvalido) {
+                alert("¡Mensaje enviado correctamente!");
+                formContacto.reset();
+            }
+        });
+    }
+});
